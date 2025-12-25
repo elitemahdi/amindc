@@ -157,3 +157,39 @@ body {
     color: #333;
     border: none;
 }
+
+/* --- Calendar Specific Styles --- */
+.calendar-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 55px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-day:hover {
+    background-color: #f0f0f0;
+}
+
+.calendar-day.active {
+    background-color: var(--primary) !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(140, 119, 236, 0.4);
+}
+
+.calendar-nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.calendar-nav-btn:hover {
+    color: var(--primary);
+}
