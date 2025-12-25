@@ -50,7 +50,40 @@
                 </header>
                 <div id="dashboard-view">
                     <div class="row mb-4" id="stats-container"></div>
-                    <!-- later add calendar and pending and cancelled here -->
+                    <div class="row mb-4 align-items-stretch">
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <div
+                                class="card h-100 border-0 shadow-sm p-4 d-flex justify-content-center align-items-center bg-white">
+                                <h5 class="text-muted"><i class="bi bi-calendar-week fs-1 d-block mb-2"></i>Calendar
+                                </h5>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="row h-100 g-3">
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h6 class="fw-bold m-0">Pending Counsellings</h6>
+                                            <i class="bi bi-three-dots cursor-pointer text-muted"></i>
+                                        </div>
+                                        <div id="pending-list" class="overflow-auto" style="max-height: 400px;"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="card h-100 border-0 shadow-sm p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <h6 class="fw-bold m-0">Cancelled Counsellings</h6>
+                                            <i class="bi bi-three-dots cursor-pointer text-muted"></i>
+                                        </div>
+                                        <div id="cancelled-list" class="overflow-auto" style="max-height: 400px;"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-12">
                         <div class="card p-4 border-0 shadow-sm">
                             <div

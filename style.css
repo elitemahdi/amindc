@@ -127,6 +127,33 @@ body {
     color: #ccc;
     font-size: 0.75rem;
 }
+
 .bi-chevron-expand:hover {
     color: var(--primary);
+}
+
+.bg-smooth-gray {
+    background-color: #f8f9fa;
+    border: none;
+}
+
+.border-primary {
+    border-color: var(--primary) !important;
+}
+
+.btn-primary-custom {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+}
+
+.btn-primary-custom:hover {
+    background-color: #7a66d3;
+    color: white;
+}
+
+.btn-light-custom {
+    background-color: #eee;
+    color: #333;
+    border: none;
 }

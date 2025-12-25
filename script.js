@@ -56,7 +56,65 @@ const dashboardData = {
             status: "Pending",
             img: 12
         }
-    ]
+    ],
+    pendingAppointments: [
+        {
+            name: "Liam Thompson",
+            doctor: "Dr. Laurent Blake",
+            type: "Family Counseling",
+            date: "2028-09-20",
+            time: "01:45 PM",
+            img: 8,
+            actionRequired: true
+        },
+        {
+            name: "Robert Smith",
+            doctor: "Dr. Laura Mitchell",
+            type: "Group Counseling",
+            date: "2028-09-21",
+            time: "10:30 AM",
+            img: 12,
+            actionRequired: false
+        },
+        {
+            name: "Jessica Adams",
+            doctor: "Dr. Mark Peterson",
+            type: "Trauma Counseling",
+            date: "2028-09-21",
+            time: "12:00 PM",
+            img: 5,
+            actionRequired: false
+        }
+    ],
+    cancelledAppointments: [
+        {
+            name: "Samantha Brown",
+            type: "Cognitive Behavioral Therapy",
+            doctor: "Dr. Paul Carter",
+            date: "2028-09-20",
+            time: "02:30 PM",
+            img: 9,
+            notifyRequired: true
+        },
+        {
+            name: "Olivia Martinez",
+            type: "Couples Counseling",
+            doctor: "Dr. Gemma",
+            date: "2028-09-20",
+            time: "03:00 PM",
+            img: 20,
+            notifyRequired: false
+        },
+        {
+            name: "Jacob Thompson",
+            type: "Individual Counseling",
+            doctor: "Dr. Paul Carter",
+            date: "2028-09-19",
+            time: "11:30 AM",
+            img: 3,
+            notifyRequired: false
+        }
+    ],
 };
 
 const StatCard = (stat) => `
@@ -118,6 +176,79 @@ const TableRow = (row) => `
         </td>
     </tr>`;
 
+
+const PendingCard = (item) => {
+    if (item.actionRequired) {
+        return `
+        <div class="card p-3 mb-3 bg-white border border-primary border-1 shadow-sm">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <img src="https://i.pravatar.cc/150?img=${item.img}" class="avatar">
+                <div>
+                    <h6 class="fw-bold m-0" style="font-size: 0.9rem;">${item.name}</h6>
+                    <div class="small text-muted" style="font-size: 0.75rem;">${item.doctor}</div>
+                    <small class="text-primary" style="font-size: 0.7rem;">${item.type}</small>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                 <small class="text-muted fw-bold" style="font-size: 0.75rem;">${item.date}</small>
+                 <small class="text-muted fw-bold" style="font-size: 0.75rem;">${item.time}</small>
+            </div>
+            <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-light-custom w-50 rounded-pill fw-bold py-2" style="font-size: 0.75rem;">Reject</button>
+                <button class="btn btn-sm btn-primary-custom w-50 rounded-pill fw-bold py-2" style="font-size: 0.75rem;">Accept</button>
+            </div>
+        </div>`;
+    } else {
+        return `
+        <div class="card p-3 mb-3 bg-smooth-gray">
+            <div class="d-flex align-items-center gap-3 mb-2">
+                <img src="https://i.pravatar.cc/150?img=${item.img}" class="avatar">
+                <div>
+                    <h6 class="fw-bold m-0" style="font-size: 0.9rem;">${item.name}</h6>
+                    <small class="text-muted" style="font-size: 0.75rem;">${item.type}</small>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+                <div class="small text-muted" style="font-size: 0.7rem;">${item.doctor}</div>
+                <div class="text-end">
+                    <div class="small text-muted" style="font-size: 0.7rem;">${item.date}</div>
+                    <div class="small text-muted" style="font-size: 0.7rem;">${item.time}</div>
+                </div>
+            </div>
+        </div>`;
+    }
+};
+
+const CancelledCard = (item) => {
+    if (item.notifyRequired) {
+        return `
+        <div class="card p-3 mb-3 border-0 shadow-sm" style="background-color: rgba(140, 119, 236, 0.2);">
+            <div class="d-flex align-items-start gap-3 mb-2">
+                <img src="https://i.pravatar.cc/150?img=${item.img}" class="avatar">
+                <div>
+                    <h6 class="fw-bold m-0 text-dark" style="font-size: 0.9rem;">${item.name}</h6>
+                    <div class="small text-muted" style="font-size: 0.7rem;">${item.date}, ${item.time}</div>
+                    <div class="small text-dark mt-1" style="font-size: 0.75rem;">${item.type}</div>
+                    <div class="small text-muted" style="font-size: 0.7rem;">${item.doctor}</div>
+                </div>
+            </div>
+            <button class="btn btn-primary-custom w-100 btn-sm rounded-pill mt-2 shadow-sm fw-bold py-2" style="font-size: 0.75rem;">Notify Doctor</button>
+        </div>`;
+    } else {
+        return `
+        <div class="card p-3 mb-3 bg-smooth-gray">
+            <div class="d-flex align-items-start gap-3">
+                <img src="https://i.pravatar.cc/150?img=${item.img}" class="avatar">
+                <div>
+                    <h6 class="fw-bold m-0" style="font-size: 0.9rem;">${item.name}</h6>
+                    <div class="small text-muted" style="font-size: 0.7rem;">${item.date}, ${item.time}</div>
+                    <div class="small text-muted mt-1" style="font-size: 0.75rem;">${item.type}</div>
+                </div>
+            </div>
+        </div>`;
+    }
+};
+
 const SidebarItem = (page) => `
     <a class="nav-link ${page.active ? 'active' : ''}" href="#" onclick="navigate('${page.name}'); return false;">
         <i class="bi ${page.icon}"></i> ${page.name}
@@ -177,5 +308,13 @@ function renderDashboardContent() {
     const tableBody = document.getElementById('table-body');
     if (tableBody) {
         tableBody.innerHTML = dashboardData.tableData.map(TableRow).join('');
+    }
+    const pendingContainer = document.getElementById('pending-list');
+    if (pendingContainer) {
+        pendingContainer.innerHTML = dashboardData.pendingAppointments.map(PendingCard).join('');
+    }
+    const cancelledContainer = document.getElementById('cancelled-list');
+    if (cancelledContainer) {
+        cancelledContainer.innerHTML = dashboardData.cancelledAppointments.map(CancelledCard).join('');
     }
 }
