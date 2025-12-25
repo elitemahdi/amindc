@@ -1,0 +1,12 @@
+:root {
+    --primary: #8c77ec;
+    --light-bg: #f8f9fe;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg);
+    font-size: 0.9rem;
+    color: #333;
+    overflow-x: hidden;
+}
