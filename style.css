@@ -1,6 +1,9 @@
 :root {
     --primary: #8c77ec;
     --light-bg: #f8f9fe;
+    --text-muted: #888;
+    --card-radius: 15px;
+    --sidebar-width: 260px;
 }
 
 body {
