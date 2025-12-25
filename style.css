@@ -6,6 +6,10 @@
     --sidebar-width: 260px;
 }
 
+.bg-primary {
+    background-color: var(--primary) !important;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--light-bg);
@@ -110,4 +114,11 @@ body {
 
 .cursor-pointer {
     cursor: pointer;
+}
+
+.card {
+    border: none;
+    border-radius: var(--card-radius);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02);
+    margin-bottom: 20px;
 }

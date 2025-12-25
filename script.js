@@ -9,6 +9,36 @@ const pages = [
     { name: 'Emails', icon: 'bi-envelope', badge: 6 }
 ];
 
+const dashboardData = {
+    stats: [
+        { label: "Total Counselling", value: 275, change: "+1.25%", trend: "up", icon: "bi-chat-dots", color: "primary" },
+        { label: "Completed", value: 105, change: "+4.56%", trend: "up", icon: "bi-check-lg", color: "primary" },
+        { label: "Pending", value: 153, change: "-0.78%", trend: "down", icon: "bi-clock", color: "primary" },
+        { label: "Cancelled", value: 17, change: "+3.62%", trend: "up", icon: "bi-x-lg", color: "primary" }
+    ],
+};
+
+const StatCard = (stat) => `
+    <div class="col-lg-3 col-md-6 mb-3">
+        <div class="card p-3 h-100">
+            <div class="d-flex justify-content-between align-items-start">
+                <div>
+                    <small class="text-muted">${stat.label}</small>
+                    <h3 class="fw-bold my-1">${stat.value}</h3>
+                    <small class="text-${stat.trend === 'up' ? 'success' : 'danger'}">
+                        <i class="bi bi-graph-${stat.trend}"></i> ${stat.change}
+                    </small>
+                </div>
+                
+                <div class="rounded-3 bg-${stat.color} text-white d-flex align-items-center justify-content-center shadow-sm" 
+                     style="width: 32px; height: 32px;">
+                    <i class="bi ${stat.icon} fs-6"></i>
+                </div>
+
+            </div>
+        </div>
+    </div>`;
+
 const SidebarItem = (page) => `
     <a class="nav-link ${page.active ? 'active' : ''}" href="#" onclick="navigate('${page.name}'); return false;">
         <i class="bi ${page.icon}"></i> ${page.name}
@@ -36,6 +66,7 @@ function initSidebarToggle() {
 
 document.addEventListener('DOMContentLoaded', () => {
     renderSidebar();
+    renderDashboardContent();
     initSidebarToggle();
 });
 
@@ -52,8 +83,16 @@ function navigate(pageName) {
         document.getElementById('sidebar').classList.remove('active');
         document.getElementById('sidebar-overlay').classList.remove('active');
     }
+    if (pageName === 'Counselling') {
+        dashboardView.classList.remove('d-none');
+        genericView.classList.add('d-none');
+    } else {
+        dashboardView.classList.add('d-none');
+        genericView.classList.remove('d-none');
+        genericTitle.innerText = pageName;
+    }
+}
 
-    dashboardView.classList.add('d-none');
-    genericView.classList.remove('d-none');
-    genericTitle.innerText = pageName;
+function renderDashboardContent() {
+    document.getElementById('stats-container').innerHTML = dashboardData.stats.map(StatCard).join('');
 }
