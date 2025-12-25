@@ -13,3 +13,52 @@ body {
     color: #333;
     overflow-x: hidden;
 }
+
+.sidebar {
+    background: #fff;
+    min-height: 100vh;
+    padding: 20px;
+    border-right: 1px solid #eee;
+    transition: all 0.3s ease-in-out;
+}
+
+@media (min-width: 992px) {
+    .sidebar {
+        display: block !important;
+        position: static;
+    }
+}
+
+@media (max-width: 991px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: calc(var(--sidebar-width) * -1);
+        width: var(--sidebar-width);
+        height: 100vh;
+        z-index: 1050;
+        box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+    .sidebar-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 1040;
+        display: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .sidebar-overlay.active {
+        display: block;
+        opacity: 1;
+    }
+}
