@@ -16,6 +16,47 @@ const dashboardData = {
         { label: "Pending", value: 153, change: "-0.78%", trend: "down", icon: "bi-clock", color: "primary" },
         { label: "Cancelled", value: 17, change: "+3.62%", trend: "up", icon: "bi-x-lg", color: "primary" }
     ],
+    tableData: [
+        {
+            id: "MDF-001",
+            date: "2028-09-20",
+            time: "03:00 PM",
+            name: "Olivia Martinez",
+            age: 32,
+            gender: "Female",
+            doctor: "Dr. Gemma O'Connor",
+            appointFor: "Couples Counselling",
+            type: "Couples Counselling",
+            status: "Completed",
+            img: 20
+        },
+        {
+            id: "MDF-002",
+            date: "2028-09-20",
+            time: "02:30 PM",
+            name: "Samantha Brown",
+            age: 28,
+            gender: "Female",
+            doctor: "Dr. Paul Carter",
+            appointFor: "Cognitive Therapy",
+            type: "Individual Counseling",
+            status: "Ongoing",
+            img: 9
+        },
+        {
+            id: "MDF-003",
+            date: "2028-09-21",
+            time: "10:00 AM",
+            name: "Robert Smith",
+            age: 45,
+            gender: "Male",
+            doctor: "Dr. Laura Mitchell",
+            appointFor: "Trauma Therapy",
+            type: "Group Counseling",
+            status: "Pending",
+            img: 12
+        }
+    ]
 };
 
 const StatCard = (stat) => `
@@ -38,6 +79,44 @@ const StatCard = (stat) => `
             </div>
         </div>
     </div>`;
+
+const TableRow = (row) => `
+    <tr>
+        <td>
+            <input class="form-check-input cursor-pointer" type="checkbox">
+        </td>
+        <td><span class="text-primary fw-medium">${row.id}</span></td>
+        <td>
+            <div class="d-flex flex-column">
+                <span>${row.date}</span>
+                <span class="text-muted small" style="font-size: 0.75rem;">${row.time}</span>
+            </div>
+        </td>
+        <td>
+            <div class="d-flex align-items-center gap-2">
+                <img src="https://i.pravatar.cc/150?img=${row.img}" class="avatar-sm">
+                <span class="fw-medium">${row.name}</span>
+            </div>
+        </td>
+        <td class="text-muted">${row.age}</td>
+        <td class="text-muted">${row.gender}</td>
+        <td>
+            <span class="d-block text-dark">${row.doctor}</span>
+        </td>
+        <td class="text-dark">${row.appointFor}</td>
+        
+        <td>
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle bg-${row.status === 'Completed' ? 'success' : (row.status === 'Ongoing' ? 'primary' : 'danger')}" style="width: 6px; height: 6px;"></div>
+                <span class="small">${row.type}</span>
+            </div>
+        </td>
+        <td>
+            <span class="status-badge ${row.status === 'Completed' ? 'st-completed' : (row.status === 'Ongoing' ? 'st-ongoing' : 'st-pending')}">
+                ${row.status}
+            </span>
+        </td>
+    </tr>`;
 
 const SidebarItem = (page) => `
     <a class="nav-link ${page.active ? 'active' : ''}" href="#" onclick="navigate('${page.name}'); return false;">
@@ -95,4 +174,8 @@ function navigate(pageName) {
 
 function renderDashboardContent() {
     document.getElementById('stats-container').innerHTML = dashboardData.stats.map(StatCard).join('');
+    const tableBody = document.getElementById('table-body');
+    if (tableBody) {
+        tableBody.innerHTML = dashboardData.tableData.map(TableRow).join('');
+    }
 }

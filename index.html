@@ -50,6 +50,72 @@
                 </header>
                 <div id="dashboard-view">
                     <div class="row mb-4" id="stats-container"></div>
+                    <!-- later add calendar and pending and cancelled here -->
+                    <div class="col-12">
+                        <div class="card p-4 border-0 shadow-sm">
+                            <div
+                                class="d-flex flex-column flex-xl-row justify-content-between align-items-center mb-4 gap-3">
+                                <div class="input-group" style="max-width: 300px;">
+                                    <span class="input-group-text bg-light border-0 rounded-start-pill ps-3 text-muted">
+                                        <i class="bi bi-search"></i>
+                                    </span>
+                                    <input type="text" class="form-control bg-light border-0 rounded-end-pill"
+                                        placeholder="Search patient, doctor, etc" style="font-size: 0.9rem;">
+                                </div>
+                                <div class="d-flex flex-wrap align-items-center gap-3 justify-content-end">
+                                    <button
+                                        class="btn btn-light-custom rounded-3 px-3 py-2 d-flex align-items-center gap-2 fw-medium"
+                                        style="font-size: 0.85rem;">
+                                        <i class="bi bi-calendar4"></i> This Week <i class="bi bi-chevron-down ms-1"
+                                            style="font-size: 0.7rem;"></i>
+                                    </button>
+                                    <div class="d-flex align-items-center gap-2">
+                                        <span class="text-muted small">Sort by:</span>
+                                        <button
+                                            class="btn btn-light-custom rounded-pill px-3 py-1 d-flex align-items-center gap-2 fw-bold"
+                                            style="font-size: 0.85rem;">
+                                            Patient <i class="bi bi-chevron-down" style="font-size: 0.7rem;"></i>
+                                        </button>
+                                    </div>
+                                    <button class="btn btn-primary-custom rounded-pill px-4 py-2 fw-medium shadow-sm">
+                                        + Add New Appointment
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-hover align-middle" style="font-size: 0.85rem;">
+                                    <thead class="bg-white">
+                                        <tr class="text-muted border-bottom">
+                                            <th class="py-3" style="width: 40px;">
+                                                <input class="form-check-input cursor-pointer" type="checkbox">
+                                            </th>
+
+                                            <th class="py-3 fw-normal">Patient ID <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Date <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Patient Name <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Age <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Gender <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Assigned Doctor <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Appoint For <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Counselling Type <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                            <th class="py-3 fw-normal">Status <i
+                                                    class="bi bi-chevron-expand ms-1 cursor-pointer"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-body" class="border-top-0">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="generic-view" class="d-none text-center py-5">
                     <div class="display-1 text-muted mb-3"><i class="bi bi-folder2-open"></i></div>

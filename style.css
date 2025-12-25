@@ -122,3 +122,11 @@ body {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.02);
     margin-bottom: 20px;
 }
+
+.bi-chevron-expand {
+    color: #ccc;
+    font-size: 0.75rem;
+}
+.bi-chevron-expand:hover {
+    color: var(--primary);
+}
