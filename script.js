@@ -1,4 +1,3 @@
-/* --- 1. CONFIGURATION --- */
 const pages = [
     { name: 'Dashboard', icon: 'bi-grid' },
     { name: 'Counselling', icon: 'bi-chat-quote', active: true },
@@ -259,13 +258,11 @@ function renderCalendar() {
     renderAppointmentList();
 }
 
-function renderAppointmentList() {
+function renderAppointmentList(appointments) {
     const listContainer = document.getElementById('todays-list');
     if (!listContainer) return;
 
-    const filteredApps = dashboardData.allAppointments.filter(app => app.date === calendarState.selectedDate);
-
-    if (filteredApps.length === 0) {
+    if (!appointments || appointments.length === 0) {
         listContainer.innerHTML = `
             <div class="text-center py-4 text-muted">
                 <i class="bi bi-calendar-x fs-1 opacity-25"></i>
@@ -274,8 +271,7 @@ function renderAppointmentList() {
         `;
         return;
     }
-
-    listContainer.innerHTML = filteredApps.map(ListItem).join('');
+    listContainer.innerHTML = appointments.map(ListItem).join('');
 }
 
 function changeWeek(daysToAdd) {
@@ -286,13 +282,38 @@ function changeWeek(daysToAdd) {
 function selectDate(dateString) {
     calendarState.selectedDate = dateString;
     renderCalendar();
-    renderAppointmentList();
+    fetchAppointments(dateString);
+}
+
+function fetchAppointments(date) {
+    const listContainer = document.getElementById('todays-list');
+
+    listContainer.innerHTML = `
+        <div class="text-center py-4">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted small">Loading schedule...</p>
+        </div>
+    `;
+
+    fetch(`get_calendar_data_ajax.php?date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            renderAppointmentList(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            listContainer.innerHTML = `
+                <div class="text-center py-4 text-danger">
+                    <p class="small">Failed to load data.</p>
+                </div>`;
+        });
 }
 
 
 function renderDashboardContent() {
     document.getElementById('stats-container').innerHTML = dashboardData.stats.map(StatCard).join('');
     renderCalendar();
+    fetchAppointments(calendarState.selectedDate);
     const pendingContainer = document.getElementById('pending-list');
     if (pendingContainer) pendingContainer.innerHTML = dashboardData.pendingAppointments.map(PendingCard).join('');
     const cancelledContainer = document.getElementById('cancelled-list');
@@ -300,7 +321,6 @@ function renderDashboardContent() {
     const tableBody = document.getElementById('table-body');
     if (tableBody) tableBody.innerHTML = dashboardData.tableData.map(TableRow).join('');
 }
-
 function renderSidebar() {
     document.getElementById('sidebar-container').innerHTML = pages.map(page => SidebarItem(page)).join('');
 }
