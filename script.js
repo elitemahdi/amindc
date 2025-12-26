@@ -13,9 +13,9 @@ const pages = [
 const dashboardData = {
     stats: [
         { label: "Total Counselling", value: 275, change: "+1.25%", trend: "up", icon: "bi-file-text", color: "primary" },
-        { label: "Completed Counselling", value: 105, change: "+4.56%", trend: "up", icon: "bi-check-circle", color: "info" },
+        { label: "Completed Counselling", value: 105, change: "+4.56%", trend: "up", icon: "bi-check-circle", color: "primary" },
         { label: "Pending Counselling", value: 153, change: "-0.78%", trend: "down", icon: "bi-hourglass-split", color: "primary" },
-        { label: "Cancelled Counselling", value: 17, change: "+3.62%", trend: "up", icon: "bi-file-x", color: "danger" }
+        { label: "Cancelled Counselling", value: 17, change: "+3.62%", trend: "up", icon: "bi-file-x", color: "primary" }
     ],
     allAppointments: [
         { date: "2025-09-17", name: "Amanda Richards", doctor: "Dr. Paul Carter", time: "09:00 AM", status: "Completed", img: 1 },
@@ -61,8 +61,8 @@ const StatCard = (stat) => `
                         <i class="bi bi-graph-${stat.trend}"></i> ${stat.change}
                     </small>
                 </div>
-                <div class="rounded-3 bg-${stat.color} text-white d-flex align-items-center justify-content-center shadow-sm" style="width: 48px; height: 48px;">
-                    <i class="bi ${stat.icon} fs-4"></i>
+                <div class="rounded-3 bg-${stat.color} text-white d-flex align-items-center justify-content-center shadow-sm" style="width: 32px; height: 32px;">
+                    <i class="bi ${stat.icon} fs-6"></i>
                 </div>
             </div>
         </div>
