@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 $host = 'localhost';
 $dbname = 'amindc_db';
 $user = 'root';
-$pass = 'ELITEmahdi@137991';
+$pass = '1234123';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);

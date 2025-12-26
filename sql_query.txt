@@ -1,0 +1,20 @@
+CREATE DATABASE amindc_db;
+USE amindc_db;
+
+CREATE TABLE appointments (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE NOT NULL,
+    time VARCHAR(20) NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    doctor VARCHAR(100) NOT NULL,
+    status ENUM('Completed', 'Pending', 'Cancelled', 'Ongoing') NOT NULL,
+    img INT DEFAULT 1
+);
+
+INSERT INTO appointments (date, time, name, doctor, status, img) VALUES
+('2025-09-17', '09:00 AM', 'Amanda Richards', 'Dr. Paul Carter', 'Completed', 1),
+('2025-09-17', '11:30 AM', 'Javier Davidson', 'Dr. Bella Stevens', 'Completed', 3),
+('2025-09-17', '01:45 PM', 'Liam Thompson', 'Dr. Laurent Blake', 'Pending', 8),
+('2025-09-17', '03:00 PM', 'Olivia Martinez', 'Dr. Gemma O''Connor', 'Cancelled', 20),
+('2025-09-18', '10:00 AM', 'Robert Smith', 'Dr. Laura Mitchell', 'Pending', 12),
+('2025-09-19', '02:00 PM', 'Jessica Adams', 'Dr. Mark Peterson', 'Ongoing', 5);
